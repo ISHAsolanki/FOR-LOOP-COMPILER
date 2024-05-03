@@ -1,0 +1,176 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> for_loop
+Rule 1     for_loop -> FOR IDENTIFIER IN RANGE LPAREN NUMBER COMMA NUMBER RPAREN COLON statements
+Rule 2     statements -> statement
+Rule 3     statements -> statements statement
+Rule 4     statement -> IDENTIFIER LPAREN IDENTIFIER RPAREN
+
+Terminals, with rules where they appear
+
+COLON                : 1
+COMMA                : 1
+FOR                  : 1
+IDENTIFIER           : 1 4 4
+IN                   : 1
+LPAREN               : 1 4
+NUMBER               : 1 1
+RANGE                : 1
+RPAREN               : 1 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+for_loop             : 0
+statement            : 2 3
+statements           : 1 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . for_loop
+    (1) for_loop -> . FOR IDENTIFIER IN RANGE LPAREN NUMBER COMMA NUMBER RPAREN COLON statements
+
+    FOR             shift and go to state 2
+
+    for_loop                       shift and go to state 1
+
+state 1
+
+    (0) S' -> for_loop .
+
+
+
+state 2
+
+    (1) for_loop -> FOR . IDENTIFIER IN RANGE LPAREN NUMBER COMMA NUMBER RPAREN COLON statements
+
+    IDENTIFIER      shift and go to state 3
+
+
+state 3
+
+    (1) for_loop -> FOR IDENTIFIER . IN RANGE LPAREN NUMBER COMMA NUMBER RPAREN COLON statements
+
+    IN              shift and go to state 4
+
+
+state 4
+
+    (1) for_loop -> FOR IDENTIFIER IN . RANGE LPAREN NUMBER COMMA NUMBER RPAREN COLON statements
+
+    RANGE           shift and go to state 5
+
+
+state 5
+
+    (1) for_loop -> FOR IDENTIFIER IN RANGE . LPAREN NUMBER COMMA NUMBER RPAREN COLON statements
+
+    LPAREN          shift and go to state 6
+
+
+state 6
+
+    (1) for_loop -> FOR IDENTIFIER IN RANGE LPAREN . NUMBER COMMA NUMBER RPAREN COLON statements
+
+    NUMBER          shift and go to state 7
+
+
+state 7
+
+    (1) for_loop -> FOR IDENTIFIER IN RANGE LPAREN NUMBER . COMMA NUMBER RPAREN COLON statements
+
+    COMMA           shift and go to state 8
+
+
+state 8
+
+    (1) for_loop -> FOR IDENTIFIER IN RANGE LPAREN NUMBER COMMA . NUMBER RPAREN COLON statements
+
+    NUMBER          shift and go to state 9
+
+
+state 9
+
+    (1) for_loop -> FOR IDENTIFIER IN RANGE LPAREN NUMBER COMMA NUMBER . RPAREN COLON statements
+
+    RPAREN          shift and go to state 10
+
+
+state 10
+
+    (1) for_loop -> FOR IDENTIFIER IN RANGE LPAREN NUMBER COMMA NUMBER RPAREN . COLON statements
+
+    COLON           shift and go to state 11
+
+
+state 11
+
+    (1) for_loop -> FOR IDENTIFIER IN RANGE LPAREN NUMBER COMMA NUMBER RPAREN COLON . statements
+    (2) statements -> . statement
+    (3) statements -> . statements statement
+    (4) statement -> . IDENTIFIER LPAREN IDENTIFIER RPAREN
+
+    IDENTIFIER      shift and go to state 12
+
+    statements                     shift and go to state 13
+    statement                      shift and go to state 14
+
+state 12
+
+    (4) statement -> IDENTIFIER . LPAREN IDENTIFIER RPAREN
+
+    LPAREN          shift and go to state 15
+
+
+state 13
+
+    (1) for_loop -> FOR IDENTIFIER IN RANGE LPAREN NUMBER COMMA NUMBER RPAREN COLON statements .
+    (3) statements -> statements . statement
+    (4) statement -> . IDENTIFIER LPAREN IDENTIFIER RPAREN
+
+    $end            reduce using rule 1 (for_loop -> FOR IDENTIFIER IN RANGE LPAREN NUMBER COMMA NUMBER RPAREN COLON statements .)
+    IDENTIFIER      shift and go to state 12
+
+    statement                      shift and go to state 16
+
+state 14
+
+    (2) statements -> statement .
+
+    IDENTIFIER      reduce using rule 2 (statements -> statement .)
+    $end            reduce using rule 2 (statements -> statement .)
+
+
+state 15
+
+    (4) statement -> IDENTIFIER LPAREN . IDENTIFIER RPAREN
+
+    IDENTIFIER      shift and go to state 17
+
+
+state 16
+
+    (3) statements -> statements statement .
+
+    IDENTIFIER      reduce using rule 3 (statements -> statements statement .)
+    $end            reduce using rule 3 (statements -> statements statement .)
+
+
+state 17
+
+    (4) statement -> IDENTIFIER LPAREN IDENTIFIER . RPAREN
+
+    RPAREN          shift and go to state 18
+
+
+state 18
+
+    (4) statement -> IDENTIFIER LPAREN IDENTIFIER RPAREN .
+
+    IDENTIFIER      reduce using rule 4 (statement -> IDENTIFIER LPAREN IDENTIFIER RPAREN .)
+    $end            reduce using rule 4 (statement -> IDENTIFIER LPAREN IDENTIFIER RPAREN .)
+
