@@ -15,19 +15,24 @@ LANGUAGE COMPONENTS
 
 -Lexer
 The lexer defines token rules to tokenize input code. It recognizes keywords, identifiers, numbers, and punctuation symbols such as parentheses and commas.
+
  ![image](https://github.com/ISHAsolanki/FOR-LOOP-COMPILER/assets/113380022/6344ecca-e706-4d0a-9a63-d432e94307eb)
 
 -Parser
 The parser defines syntactical rules to parse the tokenized code and generate an abstract syntax tree (AST). It recognizes for loop structures and function call statements within the loop body.
+
 ![image](https://github.com/ISHAsolanki/FOR-LOOP-COMPILER/assets/113380022/428c2632-ba31-4571-bffc-7dcaa92cc352)
 
 -Semantic Analysis and Intermediate Code Generation
 Semantic analysis checks the correctness of the parsed code and generates intermediate representations. In this implementation, the semantic analysis includes verifying for loop structures and generating intermediate representations of loops.
+
 ![image](https://github.com/ISHAsolanki/FOR-LOOP-COMPILER/assets/113380022/1160f1a3-8664-4f4e-9bae-6cb055f10a2d)
 
 -Code Generation
 Code generation translates the intermediate representations into executable Python code. It generates Python code equivalent to the input loop structure, allowing execution of the defined loop behavior.
+
 ![image](https://github.com/ISHAsolanki/FOR-LOOP-COMPILER/assets/113380022/cbb66d6e-9687-4aab-bcb6-b9a10d0ca8b1)
+
  
 Usage
 To use the custom language, follow these steps:
